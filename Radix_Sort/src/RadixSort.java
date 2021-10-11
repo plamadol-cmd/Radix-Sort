@@ -25,8 +25,8 @@ public class Radix_Sort {
 		return counter;
 	}
 	
-	//divide each number by multiple of 10: 10^0, then 10^1, then 10^2 etc
-	//if the number / multiple of 10 == 0, extract the number
+	//divide each number by 10
+	//if the number / 10 == 0, extract the number
 	//each iteration is going to extract the smallest numbers
 	public LinkedList<Integer> extractNums(LinkedList<Integer> arr) {
 		LinkedList<Integer> preSortedArr1 = new LinkedList<Integer>();
@@ -34,8 +34,9 @@ public class Radix_Sort {
 		
 		while(this.listIt.hasNext()) {
 			o1 = this.listIt.next();
-			if (o1 / multOf10 == 0) {
-				//System.out.println("rem " + o2);
+			if(o1 == 0 && multOf10 == 1) {
+				preSortedArr1.add(o1);
+			} else if (o1 / multOf10 == 0) {
 				this.finalArr.offer(o1);
 			} else {
 				preSortedArr1.add(o1);
@@ -46,20 +47,18 @@ public class Radix_Sort {
 	}
 	
 	public LinkedList<Integer> sortNums(LinkedList<Integer> arr) {
-		//remove smallest numbers
+		//extract the smallest numbers
 		LinkedList<Integer> preSortedArr1 = extractNums(arr);
 		//store the remaining numbers
 		LinkedList<Integer> preSortedArr2 = new LinkedList<Integer>();
 		
-		//k helps sort the numbers by their last digit, from 0 to 9
+		//k is used to sort the numbers by their last digit, from 0 to 9
 		for (int k = 0; k < 10; k++) {
 			this.listIt = preSortedArr1.iterator();
 			while(this.listIt.hasNext()) {
 				o1 = this.listIt.next();
-				//System.out.println(o1);
 				if ((o1 / this.multOf10) % 10 == k) {
 					preSortedArr2.add(o1);
-					//System.out.println(k + " " + o1);
 				}
 			}
 		}
