@@ -9,11 +9,14 @@ public class MainRadixSort {
 				(1000, 4, 25, 319, 88, 51, 3430, 8471, 701, 1, 2989, 657, 713, 10, 0));
 		
 		int maxDigits = radixAlg.findMaxDigits(arr);
-		System.out.println("initial array: " + arr + "\n");
+		System.out.println("Initial array: " + arr + "\n");
+		System.out.println("Numbers are sorted starting from the last digit to the first one");
+		System.out.println("After each step, we add the smallest digits(that are sorted) "
+				+ "to the final array" + "\n");
 		
-		for (int i = 0; i < maxDigits; i++) {
-		  arr = radixAlg.sortNums(arr);
-			System.out.println(i + 1 + " digit from last\npresorted array: " + arr);
+		for (int i = 1; i <= maxDigits; i++) {
+			arr = radixAlg.sortNums(arr);
+			System.out.println("Step " + i + "\npresorted array: " + arr);
 			System.out.println("final array: " + radixAlg.getFinalArr());
 			System.out.println();
 		}
